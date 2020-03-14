@@ -7,7 +7,7 @@ import java.net.URI
 
 class MainActivity : AppCompatActivity() {
 
-    private val uri = URI("ws://192.168.0.3:8080/pipe")
+    private val uri = URI("ws:///pipe")//ipアドレスを入れる
     private val client = MyWebSocketClient(this, uri)
 
     override fun onCreate(savedInstanceState: Bundle?) {
