@@ -12,7 +12,7 @@ import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
 
-    private val uri = URI("ws://192.168.0.3:8080/pipe")//ipアドレスを入れる
+    private val uri = URI("ws:///pipe")//ipアドレスを入れる
 
     private var client:MyWebSocketClient? = null
 
