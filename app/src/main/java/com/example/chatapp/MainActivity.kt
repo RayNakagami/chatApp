@@ -1,30 +1,49 @@
 package com.example.chatapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.net.URI
+import kotlin.math.log
+
 
 class MainActivity : AppCompatActivity() {
 
-    private val uri = URI("ws:///pipe")//ipアドレスを入れる
-    private val client = MyWebSocketClient(this, uri)
+    private val uri = URI("ws://192.168.0.3:8080/pipe")//ipアドレスを入れる
+
+    private var client:MyWebSocketClient? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        client.connect()
+        var arrayAdapter: ArrayAdapter<Any?> =
+            ArrayAdapter<Any?>(this, android.R.layout.simple_list_item_1)
+
+        this.client = MyWebSocketClient(this,arrayAdapter, uri)
+
+        client!!.connect()
+
+        listView.adapter = arrayAdapter
+
+
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        client.close()
+        client?.close()
     }
 
     override fun onResume() {
         super.onResume()
+
         btnSend.setOnClickListener{
-            client.send(sendMessage.text.toString())
+            Log.i(javaClass.simpleName, "pushed")
+            client?.send(sendMessage.text.toString())
+
         }
     }
 }
