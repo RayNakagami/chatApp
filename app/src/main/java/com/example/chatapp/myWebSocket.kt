@@ -35,7 +35,6 @@ class  MyWebSocketClient(val acttivity:Activity,val arrayAdapter: ArrayAdapter<A
         acttivity.runOnUiThread {
             if (arrayAdapter != null) {
                 arrayAdapter.add("$message \n")
-
                 arrayAdapter.notifyDataSetChanged()
             }
         }

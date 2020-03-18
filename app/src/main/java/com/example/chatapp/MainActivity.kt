@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 
         btnSend.setOnClickListener{
-            Log.i(javaClass.simpleName, "pushed")
-            client?.send(sendMessage.text.toString())
+            Log.i(javaClass.simpleName, "{\"type\":\"message\",\"text\":\""+sendMessage.text.toString()+"\",\"date\":\"1584526354741\"}")
+            client?.send("{\"type\":\"message\",\"text\":\""+sendMessage.text.toString()+"\",\"date\":\"1584526354741\"}")
 
         }
     }
